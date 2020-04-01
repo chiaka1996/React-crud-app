@@ -1,0 +1,19 @@
+.Product-out-of-stock{
+    color: red;
+}
+.delete{
+    color: red;
+}
+.submit{
+    background-color:green;
+}
+.error{
+    color: red;
+    margin-top:0;
+    font-size: 10px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.edit{
+    background-color: lightgreen;
+    margin-left: 10px;
+}
