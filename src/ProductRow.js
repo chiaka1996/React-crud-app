@@ -9,7 +9,7 @@ class ProductRow extends React.Component {
   }
   
   editRow(){
-    this.props.editProduct(this.props.product.id)
+    this.props.editProduct(this.props.product)
   }
 
   //component to delete roww

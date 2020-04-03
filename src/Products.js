@@ -23,20 +23,24 @@ class Products extends React.Component{
             filterText:'',
             inStockOnly: false,
             products: PRODUCTS,
-            editedProduct:{},
+           editedProduct:{id: '', category: '', price: '', stocked: false, name: ''},
             editStatus: false
         }
     }
+   
 
-//component to edit product
-    editProduct(productId) {
-        this.setState({
-            editedProduct: Object.assign({},this.state.products[productId])
-        })
-        console.log(this.state.editedProduct);
+//method to edit product
+    editProduct(prod) {
+       this.setState({
+           editedProduct: Object.assign({}, prod)
+       })
+
+      // console.log(this.state.editedProduct)
+        
     }
+    
 
-    //component to delete product
+    //method to delete product
     handleDestroy(productId) {
         this.setState((prevState) => {
             let products = prevState.products;
@@ -45,7 +49,7 @@ class Products extends React.Component{
         })
     }
 
-    //component to save product
+    //method to save product
     saveProduct(product){
         product.id = new Date().getTime();
         this.setState((prevState) => {
@@ -55,7 +59,7 @@ class Products extends React.Component{
         })
     }
 
-    //component to filter products
+    //method to filter products
     handleFilter(filterInput){
         this.setState(filterInput);
     }
@@ -74,7 +78,13 @@ class Products extends React.Component{
                onDestroy = {this.handleDestroy}
                editProduct = {this.editProduct}
                />
-               <ProductForm editedProducts={this.state.editedProduct} onSave = {this.saveProduct} editedStatus={this.state.editStatus}/>
+               <ProductForm
+                editedProducts={this.state.editedProduct}
+                onSave = {this.saveProduct} 
+                editedStatus={this.state.editStatus}
+                editProduct = {this.editProduct}
+
+                />
             </div>
         );
 

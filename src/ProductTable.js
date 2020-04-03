@@ -7,7 +7,7 @@ class ProductTable extends React.Component{
         super(props);
          this.sortByKeyAndOrder = this.sortByKeyAndOrder.bind(this);
         this.orderState = this.orderState.bind(this);
-        //this.sortProducts = this.sortProducts.bind(this);
+        this.sortProducts = this.sortProducts.bind(this);
         this.state={
             sort:{
                 column:"name",
@@ -15,7 +15,7 @@ class ProductTable extends React.Component{
             }
         };     
     }
-    //component for changing the state from the producttableheader;
+    //method for changing the state from the producttableheader;
     orderState(column, direction){
         this.setState({
             sort:{
@@ -25,7 +25,7 @@ class ProductTable extends React.Component{
         });
 
     }
-    //component for sorting products in ascending and descending order
+    //method for sorting products in ascending and descending order
     sortByKeyAndOrder(objectA, objectB) {
         let isDesc = this.state.sort.direction === 'desc' ? -1 : 1;
         let [a, b] = [objectA[this.state.sort.column], objectB[this.state.sort.column]];

@@ -9,7 +9,9 @@ class ProductForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
 
     this.state = {
-      product:  this.props.editedStatus === false ? Object.assign({}, RESET_VALUES) : Object.assign({}, this.props.editedStatus),
+      editedProduct: this.props.editProduct,
+      product: Object.assign({}, RESET_VALUES),
+      names: this.props.editedProducts.name,
       nameState: true,
       categoryState:true,
       priceState:true,
@@ -19,6 +21,26 @@ class ProductForm extends React.Component {
 
     }
   }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (prevState.editedProducts !== nextProps.editedProducts) {
+        return {
+            product: Object.assign({}, nextProps.editedProducts),
+            names: nextProps.editedProducts.name
+
+          };
+        
+    }
+
+    // Return null to indicate no change to state.
+    return null;
+}
+
+  componentDidMount(){
+    console.log(this.props.editedProducts)
+  }
+
+  
   //function to save products from form inputs
   handleSave(e){
     if((this.state.product['name']==="" || this.state.product['category']==="") || this.state.product['price']===""){
@@ -74,6 +96,7 @@ class ProductForm extends React.Component {
     });
   }
   render() {
+    
     return (
       <form>
       <h3>Enter a new product</h3>
@@ -81,7 +104,7 @@ class ProductForm extends React.Component {
           <label>
             Name
             <br />
-            <input type="text" name="name" onChange={this.handleChange} value={this.state.product.name} />
+            <input type="text" name="name" onChange={this.handleChange} value={this.state.names} />
             <p className="error">{this.state.name}</p>
           </label>
         </p>
